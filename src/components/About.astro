@@ -1,0 +1,265 @@
+---
+
+---
+
+<script>
+    const animation_elements = document.querySelectorAll('.animate-on-scroll, .animate-top-down, .animate-down-top');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            } 
+        })
+    }, {
+        threshold: 0.5
+    });
+
+    for (let i = 0; i < animation_elements.length; i++) {
+	    const el = animation_elements[i];
+
+	    observer.observe(el);
+    }
+</script>
+
+<div>
+    <div class="container">
+        <div class="profile-img-container animate-down-top">
+            <img src="../../assets/nasa-OVO8nK-7Rfs-unsplash.jpg" alt="" class="background-galaxy">
+            <img src='../../assets/profile.svg' alt="" class="profile-svg">
+        </div>
+        <div class="about-container">
+			<p class="animate-on-scroll blurb">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum quis magni incidunt veritatis optio praesentium ut saepe vero dolorem nemo!</p>
+			<div class="boxes">
+				<div class="box animate-top-down"></div>
+				<div class="box animate-top-down"></div>
+				<div class="box animate-top-down"></div>
+                <div class="box animate-top-down"></div>
+                <div class="box animate-top-down"></div>
+                <div class="box animate-top-down"></div>
+				<div class="box animate-top-down"></div>
+				<div class="box animate-top-down"></div>
+                <div class="box animate-top-down"></div>
+                <div class="box animate-top-down"></div>
+			</div>
+        <!--
+            Ever since
+            <span class="showdiv">
+                <a href="https://adamcodes2843.github.io/Carl-Sagan-Tribute-Page/" target="_blank" class="carl-sagan">Carl Sagan</a>
+                <div class="showme">
+                    <p>My first html/css project!</p>
+                    <img src="../../assets/smile.svg" alt="smiley face" class="smiley-face">
+                </div>
+            </span>
+            blew my mind with his passion for 
+            <span class="showdiv">
+                <a href="https://adamcodes2843.github.io/Carl-Sagan-Tribute-Page/" target="_blank" class="carl-sagan">science</a>
+                <div class="showme">
+                    <p>“We are made of star-stuff. We are a way for the universe to know itself.”</p>
+                </div>
+            </span>
+            , I have been dedicated to learning, inspired to make a positive impact in this space, and thankful for the opportunity to appreciate and do so much! 
+        -->
+        </div>
+    </div>
+</div>
+
+<style>
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translate(-300px, 0);
+        transition: all 0.4s ease-out;
+        transition-delay: 0.2s;
+    }
+
+    .animate-top-down {
+        opacity: 0;
+        transform: translate(0, -300px);
+        transition: all 0.4s ease-out;
+        transition-delay: 0.2s;
+    }
+    
+    .animate-down-top {
+        opacity: 0;
+        transform: translate(0, 300px);
+        transition: all 0.4s ease-out;
+        transition-delay: 0.2s;
+    }
+
+    .animate {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    .blurb {
+        margin-bottom: 3rem;
+        max-width: 800px;
+    }
+
+    .boxes {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        cursor: pointer;
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        justify-self: center;
+    }
+    .box:nth-child(odd) {
+        margin-top: -12px;
+    }
+    .box:nth-child(odd):hover {
+        margin-top: 0
+    }
+    .box:nth-child(even):hover {
+        margin-top: -12px;
+    }
+    .box:nth-child(2), .box:nth-child(9) {
+        transition-delay: 0.4s;
+    }
+    .box:nth-child(3), .box:nth-child(8) {
+        transition-delay: 0.6s;
+    }
+    .box:nth-child(4), .box:nth-child(7) {
+        transition-delay: 0.8s;
+    }
+    .box:nth-child(5), .box:nth-child(6) {
+        transition-delay: 1s;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3rem;
+        text-align: center;
+    }
+    .showdiv {
+        position: relative;
+    }
+    .showme {
+        display: none;
+        position: absolute;
+        box-shadow: 0px 0px 15px gold;
+        border-radius: 10px;
+        padding: 5px;
+        text-align: center;
+        background: #13151a;
+        bottom: 25px;
+        right: -35px;
+        width: 150px;
+        animation: fade-in-up 0.5s ease-in 1 forwards;
+        z-index: 2;
+    }
+    .showdiv:hover .showme {
+        display: block;
+    }
+    .carl-sagan {
+        text-decoration: none;
+        color: gold;
+    }
+    .hidden-blurb {
+        display: none;
+    }
+    .carl-sagan:hover{
+        text-decoration: underline;
+    }
+    .carl-sagan:hover + .hidden-blurb {
+        display: block;
+    }
+    .profile-img-container {
+        position: relative;
+        max-width: 70vw;
+        min-height: 300px;
+        width: 400px;
+        aspect-ratio: 4/5;
+        animation: star-background 4s ease-in-out 2 alternate;
+        border-radius: 100%;
+        background: gold;
+        overflow: hidden;
+    }
+    .background-galaxy {
+        position: absolute;
+        width: 94%;
+        height: 94%;
+        top: 3%;
+        left: 3%;
+        z-index: 0;
+        animation: star-background-image 4s ease-out 2 alternate;
+        border-radius: 100%;
+    }
+    .profile-svg {
+        position: absolute;
+        margin-top: 35%;
+        left: 15%;
+        width: 70%;
+        height: 70%;
+        z-index: 1;
+    }
+    @media screen and (min-width: 570px) {
+        .container {
+            gap: 4rem;
+        }
+        .boxes {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+    }
+    @media screen and (min-width: 800px) {
+        .boxes {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3rem;
+        }
+    }
+    @media screen and (min-width: 1440px) {
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .profile-img-container {
+            margin: auto;
+        }
+    }
+    @keyframes star-background {
+        0% {
+            border-radius: 100%;
+        }
+        33% {
+            border-radius: 55% 76% 95% 35% / 44% 25% 75% 56%;
+        }
+        66% {
+            border-radius: 31% 59% 53% 77% / 66% 28% 92% 84%;           
+        }
+        100% {
+            border-radius: 45% 55% 17% 83% / 68% 65% 35% 32%;
+        }
+    }
+    @keyframes star-background-image {
+        0% {
+            border-radius: 100%;
+            transform: translate(0,0);
+            filter: brightness(120%);
+        }
+        33% {
+            border-radius: 55% 76% 95% 35% / 44% 25% 75% 56%;
+            transform: translate(2px, 2px);
+        }
+        66% {
+            border-radius: 31% 59% 53% 77% / 66% 28% 92% 84%;
+            transform: translate(-4px, 4px);         
+        }
+        100% {
+            border-radius: 45% 55% 17% 83% / 68% 65% 35% 32%;
+            transform: translate(4px,-4px);
+            filter: brightness(100%);
+        }
+    }
+    @keyframes fade-in-up {
+        from {opacity: 0; transform: translateY(15px);}
+		to {opacity: 100; transform: translateY(0px);}
+    }
+</style>

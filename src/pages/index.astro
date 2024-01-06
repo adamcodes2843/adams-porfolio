@@ -1,0 +1,258 @@
+---
+import Layout from '../layouts/Layout.astro';
+import vid from '../../assets/waves_-_71122 (1440p).mp4'
+import Form from '../components/Form.svelte'
+import About from '../components/About.astro'
+import SevelteAbout from '../components/SevelteAbout.svelte';
+---
+
+<Layout title="Adam Childers">
+	<main>
+		<section id="intro">
+			<div class="welcome">
+				<h1><span class="slide-left">Hello, I'm </span><span style="color: gold;">Adam</span>.</br><span class="slide-right">I'm a web developer.</span></h1>
+				<nav class="intro-nav">
+					<p class="jump">Jump</p>
+					<a href="#about" class="intro-link">
+						<img src="../../assets/about.svg" alt="About">
+					</a>
+					<a href="#projects" class="intro-link">
+						<img src="../../assets/work.svg" alt="Projects">
+					</a>
+					<a href="#contact" class="intro-link">
+						<img src="../../assets/contact.svg" alt="Contact">
+					</a>
+				</nav>
+			</div>
+			<video autoplay loop>
+				<source src={vid}>
+			</video>
+		</section>
+		<nav class="sticky-nav">
+			<a href="#intro">Home <div class="nav-underline"></div></a>
+			<a href="#about">About <div class="nav-underline"></div></a>
+			<a href="#projects">Projects <div class="nav-underline"></div></a>
+			<a href="#contact">Contact <div class="nav-underline"></div></a>
+		</nav>
+		<section id="about">
+			<h2>About <div class="underline"/></h2>
+			<About />
+		</section>
+		<section id="projects">
+			<h2>Projects <div class="underline"/></h2>
+		</section>
+		<section id="contact">
+			<h2>Contact <div class="underline"/></h2>
+			<Form />
+		</section>
+	</main>
+</Layout>
+
+<style>
+	#intro {
+		position: relative;
+		min-height: 100vh;
+		min-width: 100vw;
+		overflow: hidden;
+	}
+	section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	section:not(#intro) {
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+	h1 {
+		text-align: center;
+		font-size: 40px;
+		margin: 0 1rem;
+		animation: title 1.2s ease-in 1 forwards;
+	}
+	h2 {
+		margin: 3rem 0;
+		font-size: 56px;
+		position: relative;
+	}
+	.underline {
+		clip-path: polygon(50% 50%, 80% 0, 100% 50%, 100% 100%, 80% 50%, 50% 100%, 20% 50%, 0 100%, 0 50%, 20% 0);
+		position: absolute;
+		width: 200%;
+		height: 50px;
+		background: rgb(29, 29, 97);
+		right: -50%;
+		bottom: -20px;
+		z-index: -1;
+	}
+	video {
+		position: absolute;
+		z-index: -1;
+		min-width: 100vw;
+		min-height: 100vh;
+	}
+	.intro-nav {
+		position: absolute;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 3rem;
+		bottom: -5rem;
+		cursor: pointer;
+		animation: title-button 1s ease-in 1 forwards;
+		.jump {
+			border: 4px solid gold;
+			border-radius: 0.4rem;
+			padding: 6px;
+			font-size: 32px;
+			color: gold;
+			font-weight: bold;
+		}
+	}
+	.intro-nav:hover {
+		animation-name: slide-nav;
+		animation-duration: 0.2s;
+		.jump{
+			display: none;
+		}
+	}
+	.intro-nav a {
+		display: none;
+	}
+	.intro-nav:hover a {
+		display: block;
+	}
+
+	.intro-nav a img {
+		width: 52px;
+		height: 52px;
+		fill: gold;
+		border-radius: 100%;
+		padding: 6px;
+		box-shadow: 0;
+		transition: box-shadow, 0.8s
+	}
+	.intro-nav a img:hover {
+		box-shadow: 0 0 15px gold;
+	}
+	.slide-right {
+		animation: slide-right 0.8s ease-in 1 forwards;
+	}
+	.slide-left {
+		animation: slide-left 0.8s ease-in 1 forwards;
+	}
+	.welcome {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+	.sticky-nav {
+		position: sticky;
+		top: 0;
+		display: flex;
+		justify-content: center;
+		align-items: start;
+		padding: 0.3rem 3rem 1rem;
+		gap: 2rem;
+		z-index: 10;
+		background: #13151a;
+		box-shadow: 0px 5px 10px black;
+		a {
+			opacity: 80%;
+			display: flex;
+			justify-content: center;
+			color: white;
+			text-decoration: none;
+			font-weight: 600;
+			font-size: 16px;
+			padding: 0.5rem 0;
+			position: relative;
+		}
+	}
+	.sticky-nav a:hover {
+		opacity: 100%;
+		.nav-underline {
+			width: 100%;
+			transition: width 0.5s;
+			border-radius: 0;
+	}
+	}
+	.nav-underline {
+		position: absolute;
+		bottom: 0;
+		width: 4px;
+		height: 4px;
+		border-radius: 100%;
+		background-color: gold;
+	}
+	@media screen and (min-width: 570px) {
+		h1 {
+			font-size: 56px;
+		}
+		h2 {
+			margin: 4rem 0;
+		}
+		section:not(#intro) {
+		margin-left: 3rem;
+		margin-right: 3rem;
+		}
+		.sticky-nav {
+			gap: 10%;
+			a {
+				font-size: 20px;
+			}
+		}
+	}
+	@media screen and (min-width: 1440px) {
+		section:not(#intro) {
+			max-width: 1440px;
+			margin-left: 5rem;
+			margin-right: 5rem;
+		}
+		.sticky-nav {
+			gap: 4rem;
+			justify-content: right;
+			padding: 1rem 5rem;
+		}
+	}
+	@media screen and (min-width: 1600px) {
+		section:not(#intro) {
+			margin: 0 auto;
+		}
+	}
+	@keyframes slide-nav {
+		from {gap: 0.7rem;}
+		to {gap: 3rem}
+	}
+	@keyframes title {
+		from {opacity: 0}
+		to {opacity: 100}
+	}
+	@keyframes title-button {
+		0% {
+			opacity: 0;
+		}
+		70%{
+			margin-bottom: -1.5rem;
+		}
+		80%{
+			opacity: 0;
+		}
+		100% {
+			opacity: 100;
+			margin-bottom: 0;
+		}
+	}
+	@keyframes slide-right {
+		from {margin-right: 10rem}
+		to {margin-right: 0}
+	}
+	@keyframes slide-left {
+		from {margin-left: 10rem}
+		to {margin-left: 0}
+	}
+</style>
